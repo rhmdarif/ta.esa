@@ -151,7 +151,7 @@
 			include "kelas_edit.php";
 		}
 
-// forum diskusi
+	   // forum diskusi
 		if ($_GET['module'] == 'forum') {
 			include "forum.php";
 		}
@@ -186,6 +186,11 @@
 
 		if ($_GET['module'] == 'add_jurusan') {
 			include "jurusan_add.php";
+		}
+
+		// form penetapan 
+		if ($_GET['module'] == 'penetapan') {
+			include 'penetapan_guru.php';
 		}
 
 		

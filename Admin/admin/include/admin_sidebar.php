@@ -48,70 +48,70 @@
            </a>
          </li>
 
-        <li class="nav-item">
-         <a href="?module=absen" class="nav-link">
+         <li class="nav-item">
+           <a href="?module=absen" class="nav-link">
+            <i class="fa fa-archive" aria-hidden="true"></i>
+            <p>
+             Absen
+           </p>
+         </a>
+       </li>
+
+       <li class="nav-item">
+        <a href="?module=status" class="nav-link">
           <i class="fa fa-archive" aria-hidden="true"></i>
           <p>
-           Absen
-         </p>
-       </a>
-     </li>
+            Status
+          </p>
+        </a>
+      </li>
 
-     <li class="nav-item">
-      <a href="?module=status" class="nav-link">
-        <i class="fa fa-archive" aria-hidden="true"></i>
+      <li class="nav-item">
+        <a href="?module=mapel" class="nav-link">
+          <i class="fa fa-archive" aria-hidden="true"></i>
+          <p>
+            Mapel
+          </p>
+        </a>
+      </li>
+
+
+
+      <li class="nav-item">
+       <a href="?module=file_materi" class="nav-link">
+        <i class="fa fa-file" aria-hidden="true"></i>
         <p>
-          Status
-        </p>
-      </a>
-    </li>
+         Materi
+       </p>
+     </a>
+   </li>
 
-    <li class="nav-item">
-      <a href="?module=mapel" class="nav-link">
-        <i class="fa fa-archive" aria-hidden="true"></i>
-        <p>
-          Mapel
-        </p>
-      </a>
-    </li>
+   <li class="nav-item">
+     <a href="?module=file_ujian" class="nav-link">
+       <i class="fa fa-file" aria-hidden="true"></i>
+       <p>
+         Ujian
+       </p>
+     </a>
+   </li>
 
 
-
-    <li class="nav-item">
-     <a href="?module=file_materi" class="nav-link">
+   <li class="nav-item">
+     <a href="?module=file_kelas" class="nav-link">
       <i class="fa fa-file" aria-hidden="true"></i>
       <p>
-       Materi
+       Kelas
      </p>
    </a>
  </li>
 
  <li class="nav-item">
-   <a href="?module=file_ujian" class="nav-link">
-     <i class="fa fa-file" aria-hidden="true"></i>
-     <p>
-       Ujian
-     </p>
-   </a>
- </li>
-
-
-<li class="nav-item">
- <a href="?module=file_kelas" class="nav-link">
-  <i class="fa fa-file" aria-hidden="true"></i>
-  <p>
-   Kelas
- </p>
-</a>
-</li>
-
-<li class="nav-item">
- <a href="?module=file_siswa" class="nav-link">
-  <i class="fa fa-address-card" aria-hidden="true"></i>
-  <p>
-   Siswa
- </p>
-</a>
+   <a href="?module=file_siswa" class="nav-link">
+    <i class="fa fa-address-card" aria-hidden="true"></i>
+    <p>
+     Siswa
+   </p>
+ </a>
 </li>
 
 <li class="nav-item">
@@ -160,6 +160,17 @@
  </p>
 </a>
 </li>
+
+<li class="nav-item">
+ <a href="?module=penetapan" class="nav-link">
+  <i class="fa fa-users" aria-hidden="true"></i>            
+  <p>
+   Penetapan guru
+ </p>
+</a>
+</li>
+
+
 
 <li class="nav-item">
  <a href="logout.php" class="nav-link">
