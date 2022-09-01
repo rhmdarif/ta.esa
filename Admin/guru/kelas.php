@@ -25,7 +25,7 @@
 
 				<?php
 				include 'koneksi.php';
-				$query_tampil = mysqli_query($koneksi, "SELECT *,(SELECT COUNT(*) FROM tb_siswa where tb_siswa.kd_kelas=tb_kelas.id_kelas) AS total_siswa FROM tb_kelas");
+				$query_tampil = mysqli_query($koneksi, "SELECT *,(SELECT COUNT(*) FROM tb_siswa where tb_siswa.kd_kelas=tb_kelas.id_kelas) AS total_siswa FROM tb_kelas WHERE id_kelas IN (SELECT tb_kelas_mapel.id_kelas FROM tb_kelas_mapel WHERE tb_kelas_mapel.id_guru=(SELECT tb_guru.id_guru FROM tb_guru WHERE tb_guru.email='$_SESSION[email]' ORDER BY tb_guru.id_guru ASC LIMIT 1))");
 				$no = 1;
 				while ($data = mysqli_fetch_array($query_tampil)) {
 

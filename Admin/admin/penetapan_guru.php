@@ -25,7 +25,10 @@
 
 				<?php
 				include 'koneksi.php';
-				$query_tampil = mysqli_query($koneksi,"SELECT * FROM `tb_kelas_mapel`");
+				$query_tampil = mysqli_query($koneksi,"SELECT *  FROM `tb_kelas_mapel` 
+																LEFT JOIN tb_guru ON tb_guru.id_guru=tb_kelas_mapel.id_guru 
+																LEFT JOIN tb_mapel ON tb_mapel.id_mapel=tb_kelas_mapel.id_mapel
+																ORDER BY id DESC");
 				$no = 1;
 				while ($data = mysqli_fetch_array($query_tampil)) {
 
@@ -33,45 +36,13 @@
 					<tr>
 						<td><?php echo $no++;?></td>
 						<td>
-							<select class="form-control" id="guru" name="guru" >
-								<option value="">- Pilih -</option>
-								<?php
-
-								$sql = mysqli_query($koneksi, "SELECT * FROM `tb_guru`");
-
-								while ($guru = mysqli_fetch_array($sql)) {
-
-									?>
-									<option value="<?php echo $guru['id_guru']?>"><?php echo $guru['nama']?></option>
-								<?php } ?>
-							</select>
+							<?php echo $data['nama']; ?>
 						</td>
 						<td>
-							<select class="form-control" id="kelas" name="kelas" >
-								<option value="">- Pilih -</option>
-								<?php
-								
-								$sql = mysqli_query($koneksi, "SELECT * FROM `tb_kelas`");
-
-								while ($kelas = mysqli_fetch_array($sql)) {
-
-									?>
-									<option value="<?php echo $kelas['id_kelas']?>"><?php echo $kelas['kd_kelas']?></option>
-								<?php } ?>
-							</select>
+							<?php echo $data['id_kelas']; ?>
 						</td>
 						<td>
-							<select class="form-control" id="mapel" name="mapel" >
-								<option value="">- Pilih -</option>
-								<?php
-								$sql = mysqli_query($koneksi, "SELECT * FROM `tb_mapel`");
-
-								while ($mapel = mysqli_fetch_array($sql)) {
-
-									?>
-									<option value="<?php echo $mapel['id_mapel']?>"><?php echo $mapel['nama_mapel']?></option>
-								<?php } ?>
-							</select>
+							<?php echo $data['nama_mapel']; ?>
 						</td>
 						<td>
 							<a href="" onclick="return confirm('Apakah Anda Yakin Menghapus Data ini?')" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a> 

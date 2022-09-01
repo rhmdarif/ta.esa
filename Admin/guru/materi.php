@@ -25,23 +25,23 @@
       </thead>
       <tbody>
 
-      <?php
+        <?php
         include 'koneksi.php';
-        $query_tampil = mysqli_query($koneksi,"SELECT * FROM tb_kelas LEFT JOIN tb_materi ON tb_kelas.id_kelas = tb_materi.kd_kelas where tb_materi.id_materi;");
+        $query_tampil = mysqli_query($koneksi, "SELECT tb_materi.* FROM tb_materi WHERE tb_materi.kd_kelas IN (SELECT tb_kelas_mapel.id_kelas FROM tb_kelas_mapel WHERE tb_kelas_mapel.id_guru=(SELECT tb_guru.id_guru FROM tb_guru WHERE tb_guru.email='$_SESSION[email]' ORDER BY tb_guru.id_guru ASC LIMIT 1))");
         $no = 1;
         while ($data = mysqli_fetch_array($query_tampil)) {
 
-          ?>
+        ?>
           <tr>
-            <td><?php echo $no++;?></td>
-            <td><?php echo $data['kd_kelas']?></td>
-            <td><?php echo $data['tanggal']?></td>
-             <td><?php echo $data['judul']?></td> 
-           <td><a href="<?php echo 'file_materi/'.$data['materi'];?>" target="_blank"><?php echo $data['materi']?></a></td>
-            <td><?php echo $data['kategori']?></td>
+            <td><?php echo $no++; ?></td>
+            <td><?php echo $data['kd_kelas'] ?></td>
+            <td><?php echo $data['tanggal'] ?></td>
+            <td><?php echo $data['judul'] ?></td>
+            <td><a href="<?php echo 'file_materi/' . $data['materi']; ?>" target="_blank"><?php echo $data['materi'] ?></a></td>
+            <td><?php echo $data['kategori'] ?></td>
             <td>
               <!-- <a href="" class="btn btn-warning"><i class="fa fa-pencil-alt"></i> Edit</a> | -->
-              <a href="hapus_materi.php?id=<?= $data['id_materi']?>" onclick="return confirm('Apakah Anda Yakin Menghapus Data ini?')" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a> 
+              <a href="hapus_materi.php?id=<?= $data['id_materi'] ?>" onclick="return confirm('Apakah Anda Yakin Menghapus Data ini?')" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a>
             </td>
           </tr>
         <?php } ?>
@@ -51,5 +51,3 @@
   </div>
   <!-- /.card-body -->
 </div>
-
-

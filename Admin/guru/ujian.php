@@ -26,14 +26,15 @@
 
         <?php
         include 'koneksi.php';
-        $query_tampil = mysqli_query($koneksi,"SELECT * FROM tb_kelas LEFT JOIN tb_ujian ON tb_kelas.id_kelas = tb_ujian.kode_kelas where tb_ujian.id_ujian;");
+        $query_tampil = mysqli_query($koneksi,
+        "SELECT tb_ujian.* FROM tb_ujian WHERE tb_ujian.kode_kelas IN (SELECT tb_kelas_mapel.id_kelas FROM tb_kelas_mapel WHERE tb_kelas_mapel.id_guru=(SELECT tb_guru.id_guru FROM tb_guru WHERE tb_guru.email='$_SESSION[email]' ORDER BY tb_guru.id_guru ASC LIMIT 1))");
         $no = 1;
         while ($data = mysqli_fetch_array($query_tampil)) {
 
           ?>
           <tr>
             <td><?php echo $no++;?></td>
-            <td><?php echo $data['kd_kelas']?></td>
+            <td><?php echo $data['kode_kelas']?></td>
             <td><?php echo $data['judul']?></td>
             <td><a href="<?php echo 'file_ujian/'.$data['soal'];?>" target="_blank"><?php echo $data['soal']?></a></td>
             <td><?php echo $data['kategori']?></td>

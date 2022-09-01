@@ -192,6 +192,10 @@
 		if ($_GET['module'] == 'penetapan') {
 			include 'penetapan_guru.php';
 		}
+ 
+		if ($_GET['module'] == 'add_penetapan') {
+			include 'penetapan_guru_add.php';
+		}
 
 		
 
