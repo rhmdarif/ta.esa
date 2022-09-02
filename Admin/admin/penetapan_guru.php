@@ -1,9 +1,9 @@
 <div class="card">
 	<div class="card-header">
-		<h3 class="card-title">Form Data Siswa
+		<h3 class="card-title">Penetapan Guru
 		</h3>
 		<div class="d-flex justify-content-end mb-3">
-			<button class="btn btn-primary" onclick="document.location.href='?module=add_siswa'"><i class="fa fa-plus"></i> Tambah Data</button>
+			<button class="btn btn-primary" onclick="document.location.href='?module=add_penetapan'"><i class="fa fa-plus"></i> Tambah Data</button>
 		</div>
 	</div>
 

@@ -1,10 +1,7 @@
 <div class="card">
 	<div class="card-header">
-		<h3 class="card-title">Form Data Siswa
+		<h3 class="card-title">Form Penetapan Guru - Kelas
 		</h3>
-		<div class="d-flex justify-content-end mb-3">
-			<button class="btn btn-primary" onclick="document.location.href='?module=add_siswa'"><i class="fa fa-plus"></i> Tambah Data</button>
-		</div>
 	</div>
 
 
@@ -15,8 +12,11 @@
 			include "koneksi.php";
 
 			if(isset($_POST['guru'])) {
-				if(isset($_POST['guru']) || isset($_POST['kelas']) || isset($_POST['mapel'])) {
-					$simpan = mysqli_query($koneksi, "INSERT INTO tb_kelas_mapel (id_guru, id_kelas, id_mapel) VALUES ('$_POST[guru]', '$_POST[kelas]', '$_POST[mapel]')");
+				if(isset($_POST['guru']) || isset($_POST['mapel'])) {
+					$query_mapel = mysqli_query($koneksi, "SELECT * FROM tb_mapel WHERE id_mapel='$_POST[mapel]'");
+					$data_mapel = mysqli_fetch_assoc($query_mapel);
+
+					$simpan = mysqli_query($koneksi, "INSERT INTO tb_kelas_mapel (id_guru, id_kelas, id_mapel) VALUES ('$_POST[guru]', '$data_mapel[kd_kelas]', '$_POST[mapel]')");
 					if($simpan) {
 						echo "Guru telah ditetapkan";
 					} else {
@@ -40,7 +40,7 @@
 					<?php } ?>
 				</select>
 			</div>
-			<div class="form-group">
+			<!-- <div class="form-group">
 				<label for="id_kelas">ID Kelas</label>
 				<select class="form-control" id="id_kelas" name="kelas">
 					<option value="">- Pilih -</option>
@@ -51,16 +51,16 @@
 						<option value="<?php echo $kelas['id_kelas'] ?>"><?php echo $kelas['kd_kelas'] ?><?php echo $kelas['kd_kelas'] ?></option>
 					<?php } ?>
 				</select>
-			</div>
+			</div> -->
 			<div class="form-group">
-				<label for="id_mapel">ID Mapel</label>
+				<label for="id_mapel">Kelas - Mapel</label>
 				<select class="form-control" id="id_mapel" name="mapel">
 					<option value="">- Pilih -</option>
 					<?php
 					$sql = mysqli_query($koneksi, "SELECT * FROM `tb_mapel`");
 					while ($mapel = mysqli_fetch_array($sql)) {
 					?>
-						<option value="<?php echo $mapel['id_mapel'] ?>"><?php echo $mapel['nama_mapel'] ?></option>
+						<option value="<?php echo $mapel['id_mapel'] ?>">Kls. <?php echo $mapel['kd_kelas'] ?> - <?php echo $mapel['nama_mapel'] ?></option>
 					<?php } ?>
 				</select>
 			</div>

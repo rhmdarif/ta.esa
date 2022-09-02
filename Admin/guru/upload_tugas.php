@@ -14,7 +14,8 @@
     <table id="example1" class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th>No.</th>
+          <th>No</th>
+          <th>ID</th>
           <th>Tanggal</th>
           <th>Nama Siswa</th>
           <th>Kelas</th>
@@ -27,14 +28,15 @@
         <?php
         include 'koneksi.php';
 
-        $query = mysqli_query($koneksi, "SELECT * FROM `upload_tugas` LEFT JOIN tb_siswa ON tb_siswa.id_siswa = upload_tugas.id_siswa LEFT JOIN tb_kelas_mapel ON tb_kelas_mapel.id = upload_tugas.id_kelas_mapel");
+        $query = mysqli_query($koneksi, "SELECT * FROM `upload_tugas` LEFT JOIN tb_siswa ON tb_siswa.id_siswa = upload_tugas.id_siswa LEFT JOIN tb_kelas_mapel ON tb_kelas_mapel.id = upload_tugas.id_kelas_mapel ORDER BY upload_tugas.id_upload DESC");
         $no = 1;
         while ($data = mysqli_fetch_array($query)) {
 
           ?>
 
           <tr>
-            <td><?= $no++;?></td>
+            <td><?= $no++ ?></td>
+            <td><?= $data['id_upload']?></td>
             <td><?= $data['tanggal']?></td>
             <td><?= $data['nama'] ?? "" ?></td>
             <td><?= $data['id_kelas'] ?? "" ?></td>

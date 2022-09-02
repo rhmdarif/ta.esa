@@ -23,7 +23,7 @@
                                     <?php 
                                     $query_mapel = mysqli_query($koneksi, "Select * From tb_mapel INNER JOIN tb_siswa ON tb_siswa.kd_kelas=tb_mapel.kd_kelas  Where tb_siswa.email='$_SESSION[username]'");
                                     while ($data_mapel=mysqli_fetch_assoc($query_mapel)) {
-                                        echo '<li><a href="?module='.$data_mapel['nama_mapel'].'">'.$data_mapel['nama_mapel'].'</a></li>';
+                                        echo '<li><a href="?module=kursus-saya&id_mapel='.$data_mapel['id_mapel'].'">'.$data_mapel['nama_mapel'].'</a></li>';
                                     }
                                     ?>
                                     <!-- <li><a href="?module=tik">TIK</a></li>

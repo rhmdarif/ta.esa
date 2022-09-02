@@ -52,11 +52,11 @@ if (isset($_GET['module'])) {
   }
 
   if ($_GET['module'] == 'form_tugas') {
-    include "isi_tugas_geo.php";
+    include "isi_tugas.php";
   }
 
-  if ($_GET['module'] == 'ujjian_geo') {
-    include "ujian_geografi.php";
+  if ($_GET['module'] == 'form_ujian') {
+    include "ujian.php";
   }
 }
 
@@ -101,6 +101,10 @@ if ($_GET['module'] == 'ujjian_indo') {
     // bhs inggris
   if ($_GET['module'] == 'bhs.inggris') {
     include "bhs.inggris.php";
+  }
+    // Kursus Saya
+  if ($_GET['module'] == 'kursus-saya') {
+    include "kursus-saya.php";
   }
   if ($_GET['module'] == 'login') {
     include "login.php";
