@@ -16,6 +16,8 @@
         <tr>
           <th>No.</th>
           <th>Tanggal</th>
+          <th>Nama Siswa</th>
+          <th>Kelas</th>
           <th>Nama Tugas</th>
           <th>File Tugas</th>
         </tr>
@@ -25,7 +27,7 @@
         <?php
         include 'koneksi.php';
 
-        $query = mysqli_query($koneksi, "SELECT * FROM `upload_tugas`");
+        $query = mysqli_query($koneksi, "SELECT * FROM `upload_tugas` LEFT JOIN tb_siswa ON tb_siswa.id_siswa = upload_tugas.id_siswa LEFT JOIN tb_kelas_mapel ON tb_kelas_mapel.id = upload_tugas.id_kelas_mapel");
         $no = 1;
         while ($data = mysqli_fetch_array($query)) {
 
@@ -34,6 +36,8 @@
           <tr>
             <td><?= $no++;?></td>
             <td><?= $data['tanggal']?></td>
+            <td><?= $data['nama'] ?? "" ?></td>
+            <td><?= $data['id_kelas'] ?? "" ?></td>
             <td><?= $data['nama_tugas']?></td>
             <td><a href="<?php echo '../../content/upload_tugas/'.$data['file_tugas'];?>" target="_blank"><?php echo $data['file_tugas']?></a></td>
           </tr>

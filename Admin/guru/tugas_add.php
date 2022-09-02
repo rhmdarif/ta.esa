@@ -25,7 +25,7 @@
                       <option value="">- Pilih -</option>
                       <?php
                       include 'koneksi.php';
-                      $sql = mysqli_query($koneksi, "SELECT * FROM `tb_kelas`");
+                      $sql = mysqli_query($koneksi, "SELECT * FROM `tb_kelas` WHERE id_kelas IN (SELECT id_kelas FROM tb_kelas_mapel WHERE id_guru='$_SESSION[id_guru]') ORDER BY id_kelas ASC");
 
                       while ($data = mysqli_fetch_array($sql)) {
 
@@ -72,7 +72,11 @@
                 $kategori =  $_POST['kategori'];
                 $kd_kelas =  $_POST['kelas'];
 
-
+                // ambil id_kelas_mapel 
+                $query_kelas_mapel = mysqli_query($koneksi, "SELECT * FROM tb_kelas_mapel WHERE id_kelas='$kd_kelas' AND id_guru='$_SESSION[id_guru]' ORDER BY id ASC LIMIT 1");
+                $row_kelas_mapel = mysqli_num_rows($query_kelas_mapel);
+                $data_kelas_mapel = mysqli_fetch_assoc($query_kelas_mapel);
+                $id_kelas_mapel = ($row_kelas_mapel != 0)? $data_kelas_mapel['id'] : null;
 
                 $ekstensi_diperbolehkan    = array('pdf','docx');
                 $nama    = $_FILES['soal']['name'];
@@ -86,7 +90,7 @@
                 if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){
                   if($ukuran < 2044070){ 
                     move_uploaded_file($file_tmp, 'file_tugas/'.$nama);
-                    $query    = mysqli_query($koneksi, "INSERT INTO `tb_tugas`(`tgl`, `kode_kelas`, `soal`, `nama_tugas`, `kategori`) VALUES ('$tgl','$kd_kelas','$nama','$nama_tugas','$kategori')");
+                    $query    = mysqli_query($koneksi, "INSERT INTO `tb_tugas`(`tgl`, `kode_kelas`, `soal`, `nama_tugas`, `kategori`, `id_kelas_mapel`) VALUES ('$tgl','$kd_kelas','$nama','$nama_tugas','$kategori', '$id_kelas_mapel')");
                     if ($query) {
                                     //$_SESSION['success'] = 'Disimpan';
                       echo "<script>

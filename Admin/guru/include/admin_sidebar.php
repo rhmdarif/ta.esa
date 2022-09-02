@@ -77,6 +77,15 @@
         </li>
 
         <li class="nav-item">
+          <a href="?module=upload_ujian" class="nav-link">
+            <i class="fa fa-book" aria-hidden="true"></i>
+            <p>
+              Upload Ujian
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item">
           <a href="?module=file_kelas" class="nav-link">
             <i class="fa fa-file" aria-hidden="true"></i>
             <p>

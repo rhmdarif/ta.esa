@@ -20,7 +20,7 @@
                       <option value="">- Pilih -</option>
                       <?php
                       include 'koneksi.php';
-                      $sql = mysqli_query($koneksi, "SELECT * FROM `tb_kelas`");
+                      $sql = mysqli_query($koneksi, "SELECT * FROM `tb_kelas` WHERE id_kelas IN (SELECT id_kelas FROM tb_kelas_mapel WHERE id_guru='$_SESSION[id_guru]') ORDER BY id_kelas ASC");
 
                       while ($data = mysqli_fetch_array($sql)) {
 
@@ -65,10 +65,15 @@
                         include 'koneksi.php';
 
                         if (isset($_POST['save'])) {
-                           $kd_kelas = $_POST['kd_kelas'];
+                            $kd_kelas = $_POST['kelas'];
                             $tanggal = $_POST['tanggal'];
                             $judul =  $_POST['judul'];
                             $kategori =  $_POST['kategori'];
+
+                            $query_kelas_mapel = mysqli_query($koneksi, "SELECT * FROM tb_kelas_mapel WHERE id_kelas='$kd_kelas' AND id_guru='$_SESSION[id_guru]' ORDER BY id ASC LIMIT 1");
+                            $row_kelas_mapel = mysqli_num_rows($query_kelas_mapel);
+                            $data_kelas_mapel = mysqli_fetch_assoc($query_kelas_mapel);
+                            $id_kelas_mapel = ($row_kelas_mapel != 0)? $data_kelas_mapel['id'] : null;
 
 
                             $ekstensi_diperbolehkan    = array('pdf','docx');
@@ -84,7 +89,7 @@
                             if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){
                               if($ukuran < 1044070){ 
                                 move_uploaded_file($file_tmp, 'file_materi/'.$nama);
-                                $query    = mysqli_query($koneksi, "INSERT INTO `tb_materi`(`tanggal`, `materi`, `judul`, `kategori`) VALUES ('$tanggal','$nama','$judul','$kategori')");
+                                $query    = mysqli_query($koneksi, "INSERT INTO `tb_materi`(`tanggal`, `materi`, `judul`, `kategori`, `kd_kelas`, `id_kelas_mapel`) VALUES ('$tanggal','$nama','$judul','$kategori', '$kd_kelas', '$id_kelas_mapel')");
                                 if ($query) {
                                     //$_SESSION['success'] = 'Disimpan';
                                     echo "<script>

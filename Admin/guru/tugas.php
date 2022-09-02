@@ -27,7 +27,7 @@
 
         <?php
         include 'koneksi.php';
-        $query_tampil = mysqli_query($koneksi, "SELECT tb_tugas.* FROM tb_tugas WHERE tb_tugas.kode_kelas IN (SELECT tb_kelas_mapel.id_kelas FROM tb_kelas_mapel WHERE tb_kelas_mapel.id_guru=(SELECT tb_guru.id_guru FROM tb_guru WHERE tb_guru.email='$_SESSION[email]' ORDER BY tb_guru.id_guru ASC LIMIT 1))");
+        $query_tampil = mysqli_query($koneksi, "SELECT tb_tugas.* FROM tb_tugas WHERE tb_tugas.id_kelas_mapel IN (SELECT tb_kelas_mapel.id FROM tb_kelas_mapel WHERE tb_kelas_mapel.id_guru='$_SESSION[id_guru]')");
         $no = 1;
         while ($data = mysqli_fetch_array($query_tampil)) {
 

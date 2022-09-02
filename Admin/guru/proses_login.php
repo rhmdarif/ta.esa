@@ -25,6 +25,7 @@ if($cek > 0){
 	// buat session login dan username
 	$_SESSION['email'] = $email;
 	$_SESSION['level'] = "guru";
+	$_SESSION['id_guru'] = $data['id_guru'];
 	// alihkan ke halaman dashboard admin
 	header("location:../guru/index.php?module=dashboard");
 
